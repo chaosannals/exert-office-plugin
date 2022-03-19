@@ -11,7 +11,6 @@ using Microsoft.Office.Tools.Excel;
 using Microsoft.Office.Tools.Excel.Controls;
 using Microsoft.Office.Tools.Ribbon;
 using System.Windows.Forms;
-using System.Windows.Forms.Integration;
 
 
 namespace ExcelAddInVSTOCS
@@ -29,21 +28,10 @@ namespace ExcelAddInVSTOCS
         private CustomTaskPane InitWinFormTaskPane()
         {
             var dtpwf = new DemoTaskPaneWF();
-            var host = InitWPFTaskPane();
-            dtpwf.Controls.Add(host);
             demoTaskPaneWF = CustomTaskPanes.Add(dtpwf, "一个WinForm 任务窗口");
             demoTaskPaneWF.DockPosition = Office.MsoCTPDockPosition.msoCTPDockPositionLeft;
             demoTaskPaneWF.Visible = true;
             return demoTaskPaneWF;
-        }
-
-        private ElementHost InitWPFTaskPane()
-        {
-            ElementHost host = new ElementHost();
-            host.Dock = DockStyle.Fill;
-            var dtpwpf = new DemoTaskPaneWPF();
-            host.Child = dtpwpf;
-            return host;
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
