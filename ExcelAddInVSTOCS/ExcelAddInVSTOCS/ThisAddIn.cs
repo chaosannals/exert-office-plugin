@@ -11,6 +11,7 @@ using Microsoft.Office.Tools.Excel;
 using Microsoft.Office.Tools.Excel.Controls;
 using Microsoft.Office.Tools.Ribbon;
 using System.Windows.Forms;
+using Serilog;
 
 
 namespace ExcelAddInVSTOCS
@@ -21,13 +22,31 @@ namespace ExcelAddInVSTOCS
 
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            InitLog();
             Application.WorkbookBeforeSave += Application_WorkbookBeforeSave;
             InitWinFormTaskPane();
         }
 
+        private void InitLog()
+        {
+            var sd = Environment.GetEnvironmentVariable("systemdrive");
+            Log.Logger = new LoggerConfiguration()
+               .MinimumLevel.Information()
+               .WriteTo.File
+               (
+                    path: $"{sd}\\exceladdin\\demo-.log",
+                    rollingInterval: RollingInterval.Day,
+                    rollOnFileSizeLimit: true,
+                    fileSizeLimitBytes: 2000000,
+                    flushToDiskInterval: TimeSpan.FromSeconds(10),
+                    outputTemplate: "[{Timestamp:yy-MM-dd HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}"
+                )
+                .CreateLogger();
+        }
+
         private CustomTaskPane InitWinFormTaskPane()
         {
-            var dtpwf = new DemoTaskPaneWF();
+            var dtpwf = new DemoTaskPaneWF(Application);
             demoTaskPaneWF = CustomTaskPanes.Add(dtpwf, "一个WinForm 任务窗口");
             demoTaskPaneWF.DockPosition = Office.MsoCTPDockPosition.msoCTPDockPositionLeft;
             demoTaskPaneWF.Visible = true;
@@ -36,6 +55,7 @@ namespace ExcelAddInVSTOCS
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
+            Log.CloseAndFlush();
         }
 
         void Application_WorkbookBeforeSave(Excel.Workbook Wb, bool SaveAsUI, ref bool Cancel)
