@@ -28,45 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.rootLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.wpfPanel = new System.Windows.Forms.Panel();
             this.wfLabel = new System.Windows.Forms.Label();
             this.scanWorksheetButton = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.addinDirLabel = new System.Windows.Forms.Label();
+            this.rootLayoutPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // rootLayoutPanel
             // 
-            this.tableLayoutPanel1.ColumnCount = 6;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.wpfPanel, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.wfLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.scanWorksheetButton, 4, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(260, 417);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.rootLayoutPanel.ColumnCount = 6;
+            this.rootLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.rootLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.rootLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.rootLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.rootLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.rootLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.rootLayoutPanel.Controls.Add(this.wpfPanel, 0, 3);
+            this.rootLayoutPanel.Controls.Add(this.wfLabel, 0, 0);
+            this.rootLayoutPanel.Controls.Add(this.scanWorksheetButton, 4, 0);
+            this.rootLayoutPanel.Controls.Add(this.addinDirLabel, 0, 1);
+            this.rootLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rootLayoutPanel.Location = new System.Drawing.Point(0, 0);
+            this.rootLayoutPanel.Name = "rootLayoutPanel";
+            this.rootLayoutPanel.RowCount = 6;
+            this.rootLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rootLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rootLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rootLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rootLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rootLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.rootLayoutPanel.Size = new System.Drawing.Size(260, 417);
+            this.rootLayoutPanel.TabIndex = 0;
             // 
             // wpfPanel
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.wpfPanel, 6);
+            this.rootLayoutPanel.SetColumnSpan(this.wpfPanel, 6);
             this.wpfPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wpfPanel.Location = new System.Drawing.Point(3, 32);
+            this.wpfPanel.Location = new System.Drawing.Point(3, 44);
             this.wpfPanel.Name = "wpfPanel";
-            this.tableLayoutPanel1.SetRowSpan(this.wpfPanel, 3);
+            this.rootLayoutPanel.SetRowSpan(this.wpfPanel, 3);
             this.wpfPanel.Size = new System.Drawing.Size(254, 382);
             this.wpfPanel.TabIndex = 0;
             // 
@@ -83,7 +85,7 @@
             // scanWorksheetButton
             // 
             this.scanWorksheetButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scanWorksheetButton.Location = new System.Drawing.Point(110, 3);
+            this.scanWorksheetButton.Location = new System.Drawing.Point(149, 3);
             this.scanWorksheetButton.Name = "scanWorksheetButton";
             this.scanWorksheetButton.Size = new System.Drawing.Size(75, 23);
             this.scanWorksheetButton.TabIndex = 2;
@@ -91,24 +93,36 @@
             this.scanWorksheetButton.UseVisualStyleBackColor = true;
             this.scanWorksheetButton.Click += new System.EventHandler(this.onClickScanWorksheetButton);
             // 
+            // addinDirLabel
+            // 
+            this.addinDirLabel.AutoSize = true;
+            this.rootLayoutPanel.SetColumnSpan(this.addinDirLabel, 6);
+            this.addinDirLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.addinDirLabel.Location = new System.Drawing.Point(3, 29);
+            this.addinDirLabel.Name = "addinDirLabel";
+            this.addinDirLabel.Size = new System.Drawing.Size(254, 12);
+            this.addinDirLabel.TabIndex = 3;
+            this.addinDirLabel.Text = ":";
+            // 
             // DemoTaskPaneWF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.rootLayoutPanel);
             this.Name = "DemoTaskPaneWF";
             this.Size = new System.Drawing.Size(260, 417);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.rootLayoutPanel.ResumeLayout(false);
+            this.rootLayoutPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel rootLayoutPanel;
         private System.Windows.Forms.Panel wpfPanel;
         private System.Windows.Forms.Label wfLabel;
         private System.Windows.Forms.Button scanWorksheetButton;
+        private System.Windows.Forms.Label addinDirLabel;
     }
 }

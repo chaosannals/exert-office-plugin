@@ -10,51 +10,55 @@ using Microsoft.Office.Tools;
 using Microsoft.Office.Tools.Excel;
 using Microsoft.Office.Tools.Excel.Controls;
 using Microsoft.Office.Tools.Ribbon;
+using System.IO;
 using System.Windows.Forms;
 using Serilog;
-
+using FreeSql;
+using ExcelAddInVSTOCS.Storage;
 
 namespace ExcelAddInVSTOCS
 {
     public partial class ThisAddIn
     {
-        private CustomTaskPane demoTaskPaneWF;
-
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-            InitLog();
             Application.WorkbookBeforeSave += Application_WorkbookBeforeSave;
-            InitWinFormTaskPane();
+            Application.WorkbookOpen += Application_WorkbookOpen;
+            Application.WorkbookBeforeClose += Application_WorkbookBeforeClose;
+            Application.WorkbookActivate += Application_WorkbookActivate;
         }
 
-        private void InitLog()
+        private void Application_WorkbookActivate(Excel.Workbook wb)
         {
-            var sd = Environment.GetEnvironmentVariable("systemdrive");
-            Log.Logger = new LoggerConfiguration()
-               .MinimumLevel.Information()
-               .WriteTo.File
-               (
-                    path: $"{sd}\\exceladdin\\demo-.log",
-                    rollingInterval: RollingInterval.Day,
-                    rollOnFileSizeLimit: true,
-                    fileSizeLimitBytes: 2000000,
-                    flushToDiskInterval: TimeSpan.FromSeconds(10),
-                    outputTemplate: "[{Timestamp:yy-MM-dd HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}"
-                )
-                .CreateLogger();
+            var wfn = Application.ActiveWorkbook.FullName;
+            var habit = UserHabit.Load(wfn);
+            Log.Information("加载用户习惯：{0}", habit);
+            Globals.Ribbons.DemoRibbon.visiableToggleButton.Checked = habit.VisiableTaskPane;
         }
 
-        private CustomTaskPane InitWinFormTaskPane()
+        private void Application_WorkbookOpen(Excel.Workbook wb)
         {
-            var dtpwf = new DemoTaskPaneWF(Application);
-            demoTaskPaneWF = CustomTaskPanes.Add(dtpwf, "一个WinForm 任务窗口");
-            demoTaskPaneWF.DockPosition = Office.MsoCTPDockPosition.msoCTPDockPositionLeft;
-            demoTaskPaneWF.Visible = true;
-            return demoTaskPaneWF;
+            var habit = UserHabit.Load(wb.FullName);
+            var dtp = new DemoTaskPaneWF(wb.FullName, "一个WinForm 任务窗口");
+            dtp.WorkbookTaskPane.Visible = habit.VisiableTaskPane;
         }
 
+        private void Application_WorkbookBeforeClose(Excel.Workbook wb, ref bool cancel)
+        {
+            if (!cancel)
+            {
+                DemoTaskPaneWF.Drop(wb.FullName);
+            }
+        }
+
+        /// <summary>
+        /// 卸载时刷新日志
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
+            Log.Information("日志落盘");
             Log.CloseAndFlush();
         }
 
