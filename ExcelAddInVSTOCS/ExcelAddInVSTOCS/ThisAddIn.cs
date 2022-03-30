@@ -26,6 +26,14 @@ namespace ExcelAddInVSTOCS
             Application.WorkbookOpen += Application_WorkbookOpen;
             Application.WorkbookBeforeClose += Application_WorkbookBeforeClose;
             Application.WorkbookActivate += Application_WorkbookActivate;
+
+            Application.SheetBeforeDoubleClick += Application_SheetBeforeDoubleClick;
+        }
+
+        private void Application_SheetBeforeDoubleClick(object sh, Excel.Range target, ref bool cancel)
+        {
+            Excel.Worksheet ws = sh as Excel.Worksheet;
+            Log.Information("{0} 双击了： {1}", ws.Name, target.Address);
         }
 
         private void Application_WorkbookActivate(Excel.Workbook wb)
@@ -62,8 +70,15 @@ namespace ExcelAddInVSTOCS
             Log.CloseAndFlush();
         }
 
+        /// <summary>
+        /// 保存前处理
+        /// </summary>
+        /// <param name="Wb"></param>
+        /// <param name="SaveAsUI"></param>
+        /// <param name="Cancel"></param>
         void Application_WorkbookBeforeSave(Excel.Workbook Wb, bool SaveAsUI, ref bool Cancel)
         {
+            /*
             Excel.Worksheet activeWorksheet = Application.ActiveSheet as Excel.Worksheet;
             Excel.Range firstRow = activeWorksheet.Range["A1"];
             firstRow.EntireRow.Insert(Excel.XlInsertShiftDirection.xlShiftDown);
@@ -73,6 +88,7 @@ namespace ExcelAddInVSTOCS
             Excel.Range br = activeWorksheet.Range["A3"];
             Worksheet ws = Globals.Factory.GetVstoObject(activeWorksheet);
             ws.Controls.AddButton(br, "I'm button");
+            */
         }
 
         #region VSTO 生成的代码

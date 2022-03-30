@@ -13,6 +13,8 @@ Microsoft.Office.Interop.Excel 名字空间下的 Workbook， Worksheet，ListOb
 都可以通过 Globals.Factory.GetVstoObject
 得到对应 Microsoft.Office.Tools.Excel 名字空间下的实例。
 
+注：工作表中添加控件，添加后的控件如果只是为了帮助用户操作使用完后要记得清理，不然保存到文档里，用户无法删除。
+
 ## 使用 WPF
 
 Office 是 WinForm 软件，插件默认只能加入 WinForm 控件。

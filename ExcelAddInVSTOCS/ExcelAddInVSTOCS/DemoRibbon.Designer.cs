@@ -38,15 +38,31 @@
             this.group1 = this.Factory.CreateRibbonGroup();
             this.saveButton = this.Factory.CreateRibbonButton();
             this.group2 = this.Factory.CreateRibbonGroup();
+            this.label1 = this.Factory.CreateRibbonLabel();
             this.ribbonDemoTab123456789 = this.Factory.CreateRibbonTab();
             this.settingGroup = this.Factory.CreateRibbonGroup();
             this.visiableToggleButton = this.Factory.CreateRibbonToggleButton();
-            this.label1 = this.Factory.CreateRibbonLabel();
+            this.actionGroup = this.Factory.CreateRibbonGroup();
+            this.findSheetEditBox = this.Factory.CreateRibbonEditBox();
+            this.findSheetButton = this.Factory.CreateRibbonButton();
+            this.findSheetTipLabel = this.Factory.CreateRibbonLabel();
+            this.separator1 = this.Factory.CreateRibbonSeparator();
+            this.newSheetEditBox = this.Factory.CreateRibbonEditBox();
+            this.newSheetButton = this.Factory.CreateRibbonButton();
+            this.newSheetTipLabel = this.Factory.CreateRibbonLabel();
+            this.separator2 = this.Factory.CreateRibbonSeparator();
+            this.buttonGroup = this.Factory.CreateRibbonButtonGroup();
+            this.selectionButton = this.Factory.CreateRibbonButton();
+            this.testButton = this.Factory.CreateRibbonButton();
+            this.scanButton = this.Factory.CreateRibbonButton();
+            this.tipLabel = this.Factory.CreateRibbonLabel();
             this.ribbonTab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.group2.SuspendLayout();
             this.ribbonDemoTab123456789.SuspendLayout();
             this.settingGroup.SuspendLayout();
+            this.actionGroup.SuspendLayout();
+            this.buttonGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribbonTab1
@@ -74,9 +90,15 @@
             this.group2.Label = "演示2组";
             this.group2.Name = "group2";
             // 
+            // label1
+            // 
+            this.label1.Label = "内置 tab ID 无法改动示例会扰乱";
+            this.label1.Name = "label1";
+            // 
             // ribbonDemoTab123456789
             // 
             this.ribbonDemoTab123456789.Groups.Add(this.settingGroup);
+            this.ribbonDemoTab123456789.Groups.Add(this.actionGroup);
             this.ribbonDemoTab123456789.Label = "测试功能区";
             this.ribbonDemoTab123456789.Name = "ribbonDemoTab123456789";
             // 
@@ -92,10 +114,92 @@
             this.visiableToggleButton.Name = "visiableToggleButton";
             this.visiableToggleButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.onClickRibbonVisiableButton);
             // 
-            // label1
+            // actionGroup
             // 
-            this.label1.Label = "内置 tab ID 无法改动示例会扰乱";
-            this.label1.Name = "label1";
+            this.actionGroup.Items.Add(this.findSheetEditBox);
+            this.actionGroup.Items.Add(this.findSheetButton);
+            this.actionGroup.Items.Add(this.findSheetTipLabel);
+            this.actionGroup.Items.Add(this.separator1);
+            this.actionGroup.Items.Add(this.newSheetEditBox);
+            this.actionGroup.Items.Add(this.newSheetButton);
+            this.actionGroup.Items.Add(this.newSheetTipLabel);
+            this.actionGroup.Items.Add(this.separator2);
+            this.actionGroup.Items.Add(this.buttonGroup);
+            this.actionGroup.Items.Add(this.tipLabel);
+            this.actionGroup.Label = "功能";
+            this.actionGroup.Name = "actionGroup";
+            // 
+            // findSheetEditBox
+            // 
+            this.findSheetEditBox.Label = "搜索关键字：";
+            this.findSheetEditBox.Name = "findSheetEditBox";
+            this.findSheetEditBox.Text = null;
+            // 
+            // findSheetButton
+            // 
+            this.findSheetButton.Label = "搜索";
+            this.findSheetButton.Name = "findSheetButton";
+            this.findSheetButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.onClickFindSheetButton);
+            // 
+            // findSheetTipLabel
+            // 
+            this.findSheetTipLabel.Label = ":";
+            this.findSheetTipLabel.Name = "findSheetTipLabel";
+            // 
+            // separator1
+            // 
+            this.separator1.Name = "separator1";
+            // 
+            // newSheetEditBox
+            // 
+            this.newSheetEditBox.Label = "创建工作表名：";
+            this.newSheetEditBox.Name = "newSheetEditBox";
+            this.newSheetEditBox.Text = null;
+            // 
+            // newSheetButton
+            // 
+            this.newSheetButton.Label = "创建";
+            this.newSheetButton.Name = "newSheetButton";
+            this.newSheetButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.onClickNewSheetButton);
+            // 
+            // newSheetTipLabel
+            // 
+            this.newSheetTipLabel.Label = ":";
+            this.newSheetTipLabel.Name = "newSheetTipLabel";
+            // 
+            // separator2
+            // 
+            this.separator2.Name = "separator2";
+            // 
+            // buttonGroup
+            // 
+            this.buttonGroup.Items.Add(this.selectionButton);
+            this.buttonGroup.Items.Add(this.testButton);
+            this.buttonGroup.Items.Add(this.scanButton);
+            this.buttonGroup.Name = "buttonGroup";
+            // 
+            // selectionButton
+            // 
+            this.selectionButton.Label = "获取选中范围";
+            this.selectionButton.Name = "selectionButton";
+            this.selectionButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.onClickGetSelection);
+            // 
+            // testButton
+            // 
+            this.testButton.Label = "测试";
+            this.testButton.Name = "testButton";
+            this.testButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.onClickTestButton);
+            // 
+            // scanButton
+            // 
+            this.scanButton.Label = "扫描";
+            this.scanButton.Name = "scanButton";
+            this.scanButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.onClickScanButton);
+            // 
+            // tipLabel
+            // 
+            this.tipLabel.Label = "：";
+            this.tipLabel.Name = "tipLabel";
             // 
             // DemoRibbon
             // 
@@ -114,6 +218,10 @@
             this.ribbonDemoTab123456789.PerformLayout();
             this.settingGroup.ResumeLayout(false);
             this.settingGroup.PerformLayout();
+            this.actionGroup.ResumeLayout(false);
+            this.actionGroup.PerformLayout();
+            this.buttonGroup.ResumeLayout(false);
+            this.buttonGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -128,6 +236,20 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup settingGroup;
         internal Microsoft.Office.Tools.Ribbon.RibbonToggleButton visiableToggleButton;
         internal Microsoft.Office.Tools.Ribbon.RibbonLabel label1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonGroup actionGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonEditBox findSheetEditBox;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton findSheetButton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonEditBox newSheetEditBox;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton newSheetButton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonSeparator separator1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonLabel newSheetTipLabel;
+        internal Microsoft.Office.Tools.Ribbon.RibbonLabel findSheetTipLabel;
+        internal Microsoft.Office.Tools.Ribbon.RibbonSeparator separator2;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton scanButton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton testButton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButtonGroup buttonGroup;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton selectionButton;
+        internal Microsoft.Office.Tools.Ribbon.RibbonLabel tipLabel;
     }
 
     partial class ThisRibbonCollection

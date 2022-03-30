@@ -19,5 +19,10 @@ namespace ExcelAddInVSTOCS
                 Log.Information($"{c.Address} {c.Value}");
             }
         }
+
+        public void FindSheet(Excel.Workbook workbook)
+        {
+
+        }
     }
 }
