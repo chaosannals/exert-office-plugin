@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<customUI xmlns="http://schemas.microsoft.com/office/2009/07/customui" onLoad="Ribbon_Load">
+  <ribbon>
+    <tabs>
+      <tab idMso="TabAddIns" label="右键菜单2">
+        <group id="MyGroup" label="My Group">
+			<button id="textButton2222" label="Insert Text2222"
+						screentip="Text" onAction="OnTextButton"
+						supertip="Inserts text at the cursor location."/>
+        </group>
+      </tab>
+		<tab idMso="TabAddIns" label="右键菜单">
+			<group id="ContentGroup" label="Content">
+				<button id="textButton" label="Insert Text"
+						screentip="Text" onAction="OnTextButton"
+						supertip="Inserts text at the cursor location."/>
+				<button id="tableButton" label="Insert Table"
+						screentip="Table" onAction="OnTableButton"
+						supertip="Inserts a table at the cursor location."/>
+			</group>
+		</tab>
+		<tab idMso="TabAddIns" label="右键菜单2">
+			<group id="MyGrou2p" label="My Group">
+				<button id="textButton2" label="Insert Text2222"
+						screentip="Text" onAction="OnTextButton"
+						supertip="Inserts text at the cursor location."/>
+			</group>
+		</tab>
+    </tabs>
+  </ribbon>
+	<contextMenus>
+		<contextMenu idMso="ContextMenuCell">
+		  <button id="MyButton" label="My Button" insertBeforeMso="HyperlinkInsert" onAction="GetButtonID" />
+		  <menu id="MySubMenu" label="My Submenu" >
+			<button id="MyButton2" label="Button on submenu" />
+		  </menu>
+		  <gallery id="galleryOne" label="My Gallery">
+			<item id="item1" imageMso="HappyFace" />
+			<item id="item2" imageMso="HappyFace" />
+			<item id="item3" imageMso="HappyFace" />
+			<item id="item4" imageMso="HappyFace" />
+		  </gallery>
+		</contextMenu>
+
+		<contextMenu idMso="ContextMenuCell">
+			<button idMso="FileSave" insertBeforeMso="Cut" />
+			<button id="MyButton33333" label="Toggle Case Upper/Lower/Proper"
+				insertBeforeMso="Cut"
+				onAction="ToggleCaseMacro"
+				imageMso="HappyFace"/>
+			<menu id="MySubMenu44444" label="Case Menu" insertBeforeMso="Cut"  >
+				<button id="Menu1Button1" label="Upper Case"
+					imageMso="U" onAction="UpperMacro"/>
+				<button id="Menu1Button2" label="Lower Case"
+					imageMso="L" onAction="LowerMacro"/>
+				<button id="Menu1Button3" label="Proper Case"
+					imageMso="P" onAction="ProperMacro"/>
+			</menu>
+			<menuSeparator id="MySeparator" insertBeforeMso="Cut" />
+		</contextMenu>
+	</contextMenus>
+</customUI>
+
